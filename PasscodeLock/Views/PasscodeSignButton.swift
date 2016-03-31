@@ -70,19 +70,20 @@ public class PasscodeSignButton: UIButton {
     }
     
     private func setupActions() {
-        
-        addTarget(self, action: Selector("handleTouchDown"), forControlEvents: .TouchDown)
-        addTarget(self, action: Selector("handleTouchUp"), forControlEvents: [.TouchUpInside, .TouchDragOutside, .TouchCancel])
+        addTarget(self, action: #selector(PasscodeSignButton.handleTouchDown), forControlEvents: .TouchDown)
+        addTarget(self, action: #selector(PasscodeSignButton.handleTouchUp), forControlEvents: [.TouchUpInside, .TouchDragOutside, .TouchCancel])
     }
     
     func handleTouchDown() {
         
         animateBackgroundColor(highlightBackgroundColor)
+        layer.borderWidth = 0
     }
     
     func handleTouchUp() {
         
         animateBackgroundColor(defaultBackgroundColor)
+        layer.borderWidth = 1
     }
     
     private func animateBackgroundColor(color: UIColor) {

@@ -58,7 +58,7 @@ public class PasscodeSignPlaceholderView: UIView {
     private func setupView() {
         
         layer.cornerRadius = 8
-        layer.borderWidth = 1
+        layer.borderWidth = 0
         layer.borderColor = activeColor.CGColor
         backgroundColor = inactiveColor
     }
