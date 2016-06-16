@@ -12,7 +12,7 @@ public let PasscodeLockIncorrectPasscodeNotification = "passcode.lock.incorrect.
 
 struct EnterPasscodeState: PasscodeLockStateType {
     
-    let title: String
+    var title: String
     let description: String
     let isCancellableAction: Bool
     var isTouchIDAllowed = true
@@ -39,12 +39,17 @@ struct EnterPasscodeState: PasscodeLockStateType {
             
         } else {
             
+            
             inccorectPasscodeAttempts += 1
             
             if inccorectPasscodeAttempts >= lock.configuration.maximumInccorectPasscodeAttempts {
                 
                 postNotification()
             }
+            var nextState = EnterPasscodeState(allowCancellation: false)
+            nextState.title = localizedStringFor("PasscodeLockIncorrectPassword", comment: "Enter passcode incorrect password text")
+            
+            lock.changeStateTo(nextState)
             
             lock.delegate?.passcodeLockDidFail(lock)
         }
